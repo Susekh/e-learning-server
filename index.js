@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin:"https://iit-e-learning.pages.dev/",
+    origin:"*",
     credentials:true
 }));
  
