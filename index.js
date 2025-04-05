@@ -22,9 +22,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin:"*",
-    credentials:true
+    origin: "https://iit-e-learning.pages.dev", // your frontend URL
+    credentials: true
 }));
+
  
 // apis
 app.get("/", (req, res) => (res.json({status : "working fine"})));
