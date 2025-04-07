@@ -22,12 +22,29 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cookieParser());
 
+const allowedOrigins = [
+  'https://iit-e-learning.pages.dev',
+  'http://localhost:5173',
+];
+
+const allowedOrigins = [
+  'https://iit-e-learning.pages.dev',
+  'http://localhost:5173',
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173" || "https://iit-e-learning.pages.dev",
+    origin: function (origin, callback) {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
 );
+
 
 // apis
 app.get("/", (req, res) => res.json({ status: "working fine" }));
